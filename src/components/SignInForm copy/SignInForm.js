@@ -4,9 +4,9 @@ import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/Firebase";
-import Button from "../Button/Button";
+import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
-import "./signInForm.style.scss";
+import { SignInContainer, ButtonsContainer } from "./signInForm.style.js";
 
 const defaultFormFields = {
   email: "",
@@ -51,7 +51,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign__up--container">
+    <SignInContainer>
       <h2>Already have an account</h2>
       <span>Sign In with email and password</span>
       <form onSubmit={handleSubmit}>
@@ -72,16 +72,19 @@ const SignInForm = () => {
           value={password}
           required
         />
-        <div className="buttons__container">
+        <ButtonsContainer>
           <Button type="submit">Sign In</Button>
 
           {/* type="button" --> to prevent do not submit the form by default with clicking google sing in button */}
-          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
-            Google Sign In
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={signInWithGoogle}>
+            Sign In With Google
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 
